@@ -21,13 +21,28 @@ var OSM_background = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/
 var Esri_World = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png').addTo(mymap);
 var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png').addTo(mymap);
 var markBota = L.marker([48.523549, 9.057546]).addTo(mymap);
+var scale = L.control.scale({maxWidth: 200, metric: true, imperial: false}).addTo(mymap);
+markBota.bindPopup("<p>Alter Bota Tübingen</p>");
+var study_area = {
+"type": "FeatureCollection",
+"name": "study_area_4326",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [{ "type": "Feature", "properties": { "id": 0 }, "geometry": { "type":
+"MultiPolygon", "coordinates": [ [ [ [ 29.597263320989793, -29.633496720408946 ], [
+29.595800635703583, -29.582872285881187 ], [ 29.740123992722264, -29.580833660892289 ], [
+29.749516887591113, -29.629706379312612 ], [ 29.597263320989793, -29.633496720408946 ] ] ] ]
+} }
+]}
+overlay_study_area = L.geoJSON(study_area).addTo(mymap);
 var basemaps = {
 	"Open Street Map" : OSM_background,
 	"ESRI Weltkarte" : Esri_World,
 	"Open Topo Map" : OpenTopoMap
 };
+var layer = {
+	"Untersuchungsgebiet" : overlay_study_area,
+};
 var legend = L.control.layers(basemaps, null, {}).addTo(mymap);
-markBota.bindPopup("<p>Alter Bota Tübingen</p>");
 </script>
 </body>
 </html>
