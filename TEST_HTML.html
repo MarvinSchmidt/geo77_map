@@ -26,6 +26,7 @@ var basemaps = {
 	"Erde bei Nacht" : NASA_Night,
 	"Open Topo Map" : OpenTopoMap
 };
+var legend = L.control.layers(basemaps, null, {}).addTo(mymap);
 markBota.bindPopup("<p>Alter Bota Tübingen</p>");
 </script>
 </body>
